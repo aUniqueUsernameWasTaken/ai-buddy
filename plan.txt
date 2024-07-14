@@ -1,0 +1,4 @@
+this is how the algorithm is going to go:
+first the voice recognition program understands my voice [DONE]
+then it feeds the output of that into a language learning model
+which then i will use text to speech but use franeks cloned voice
