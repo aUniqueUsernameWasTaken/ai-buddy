@@ -1,5 +1,5 @@
 from gtts import gTTS
 
-def texttospeach(text):
+def texttospeach(text, counter):
     tts = gTTS(text)
-    tts.save("output.mp3")
+    tts.save("outputs/output"+str(counter)+".mp3")

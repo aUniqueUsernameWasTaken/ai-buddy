@@ -1,13 +1,19 @@
-from transformers import pipeline
+def aishit(prompt):
+    import os
+    from mistralai.client import MistralClient
+    from mistralai.models.chat_completion import ChatMessage
 
-# Initialize the text generation pipeline with my model
-conversation = pipeline('text-generation', model='EleutherAI/gpt-neo-2.7B')
+    # Replace 'your_api_key' with your actual API key
+    api_key = "MISTRALAIAPIKEY"
+    model = "mistral-large-latest"
 
-# Prepare the input for the model
-input_text = "Hey Franek, how are you?"
+    client = MistralClient(api_key=api_key)
 
-# Generate a response
-response = conversation(input_text, max_length=100, do_sample=True)
+    chat_response = client.chat(
+        model=model,
+        messages=[ChatMessage(role="user", content=prompt+"\n##########\nkeep your answer within 40 words MAX and try to aim for smaller messages please")]
+    )
 
-# Print the generated response
-print(response[0]['generated_text'].strip())
+    print(chat_response.choices[0].message.content)
+
+    return (chat_response.choices[0].message.content)
