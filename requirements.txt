@@ -1,0 +1,6 @@
+gTTS==2.5.1
+mistralai==0.4.2
+pydub==0.25.1
+scipy==1.14.0
+sounddevice==0.4.7
+SpeechRecognition==3.10.4
