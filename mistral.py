@@ -4,7 +4,7 @@ def aishit(prompt, stuffaskedbefore):
     from mistralai.models.chat_completion import ChatMessage
 
     # Replace 'your_api_key' with your actual API key
-    api_key = "158fsto70jgSJhUn6FERNxH2zcOai9fk"
+    api_key = "APIKEY"
     model = "mistral-large-latest"
 
     client = MistralClient(api_key=api_key)

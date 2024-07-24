@@ -16,19 +16,24 @@ def dostuff():
     print("Audio saved successfully")
 
     command = ["ffmpeg", "-i", 'audio.wav', "-f", "wav", "-acodec", "pcm_s16le", "-ac", "1", "-ar", "16000", 'audio_converted.wav']
-    subprocess.check_call(command)
+    subprocess.check_call(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     # Start voice recognition
     r = sr.Recognizer()
 
+
     filename = "audio_converted.wav"
     # open the file
-    with sr.AudioFile(filename) as source:
-        # listen for the data (load audio to memory)
-        audio_data = r.record(source)
-        # recognize (convert from speech to text)
-        text = r.recognize_google(audio_data)
-        print("\n"+text)
+    try:
+        with sr.AudioFile(filename) as source:
+            # listen for the data (load audio to memory)
+            audio_data = r.record(source)
+            # recognize (convert from speech to text)
+            text = r.recognize_google(audio_data)
+            print("\n"+text)
+    except sr.UnknownValueError:
+        print("Silence detected. skipping")
+        return False
 
     os.remove("audio.wav")
     os.remove("audio_converted.wav")
